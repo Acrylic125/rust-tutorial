@@ -1,7 +1,8 @@
 // use tutorial::collections::vector;
 // use tutorial::collections::maps;
-use tutorial::errors;
+// use tutorial::errors;
+use tutorial::generics;
 
 fn main() {
-    errors::try_error_panic();
+    generics::try_generics();
 }
