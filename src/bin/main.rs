@@ -1,8 +1,9 @@
 // use tutorial::collections::vector;
 // use tutorial::collections::maps;
 // use tutorial::errors;
-use tutorial::generics;
+// use tutorial::generics;
+use tutorial::traits;
 
 fn main() {
-    generics::try_generics();
+    traits::try_traits();
 }

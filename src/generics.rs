@@ -20,7 +20,10 @@ pub struct Vector<T: Add + Sub + Mul> {
     pub y: T,
 }
 
-impl<T: Add + Sub + Mul> Vector<T> {
+impl<T> Vector<T>
+where
+    T: Add + Sub + Mul,
+{
     pub fn new(x: T, y: T) -> Vector<T> {
         Vector { x, y }
     }
