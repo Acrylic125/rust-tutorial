@@ -2,8 +2,9 @@
 // use tutorial::collections::maps;
 // use tutorial::errors;
 // use tutorial::generics;
-use tutorial::traits;
+// use tutorial::traits;
+use tutorial::lifetimes;
 
 fn main() {
-    traits::try_traits();
+    lifetimes::try_lifetimes();
 }
