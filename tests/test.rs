@@ -1,8 +1,7 @@
-use super::collections::vector;
 
 #[cfg(test)]
 mod test {
-    use crate::collections::vector;
+    use tutorial::collections::vector;
 
     #[test]
     fn is_3_odd() {

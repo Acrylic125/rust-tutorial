@@ -5,4 +5,3 @@ pub mod lifetimes;
 pub mod strings;
 pub mod traits;
 
-mod test;
