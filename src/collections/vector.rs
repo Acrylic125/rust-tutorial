@@ -26,3 +26,7 @@ pub fn try_getting_value() {
         None => println!("Failed from get()!"),
     };
 }
+
+pub fn create_dummy_vector() -> Vec<i32> {
+    vec![1, 2, 3, 4, 5]
+}

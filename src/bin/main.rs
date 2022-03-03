@@ -6,5 +6,15 @@
 use tutorial::lifetimes;
 
 fn main() {
-    lifetimes::try_lifetimes();
+    // lifetimes::try_lifetimes();
+    let person = Person {
+        name: String::from("John"),
+        age: 3,
+    };
+    println!("{}", person.name);
+}
+
+struct Person {
+    name: String,
+    age: i32
 }
