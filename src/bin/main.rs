@@ -3,18 +3,9 @@
 // use tutorial::errors;
 // use tutorial::generics;
 // use tutorial::traits;
-use tutorial::lifetimes;
+// use tutorial::lifetimes;
+use tutorial::closures;
 
 fn main() {
-    // lifetimes::try_lifetimes();
-    let person = Person {
-        name: String::from("John"),
-        age: 3,
-    };
-    println!("{}", person.name);
-}
-
-struct Person {
-    name: String,
-    age: i32
+    closures::try_closures();
 }
