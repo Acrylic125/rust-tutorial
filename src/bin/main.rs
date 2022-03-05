@@ -4,8 +4,9 @@
 // use tutorial::generics;
 // use tutorial::traits;
 // use tutorial::lifetimes;
-use tutorial::closures;
+// use tutorial::closures;
+use tutorial::smart_pointers;
 
 fn main() {
-    closures::try_closures();
+    smart_pointers::try_smart_pointers();
 }
