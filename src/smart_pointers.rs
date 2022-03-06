@@ -1,8 +1,10 @@
+use std::fmt::Display;
 use std::ops::Deref;
 
 pub fn try_smart_pointers() {
     try_boxing();
     try_referencing();
+    try_dropping();
 }
 
 enum ConsList<T> {
@@ -37,6 +39,18 @@ impl<T> Deref for CustomBox<T> {
     }
 }
 
+impl<T> Drop for CustomBox<T> {
+    fn drop(&mut self) {}
+}
+
+pub struct DropBox<T: Display>(T);
+
+impl<T: Display> Drop for DropBox<T> {
+    fn drop(&mut self) {
+        println!("Dropped {}", &self.0);
+    }
+}
+
 pub fn try_referencing() {
     let hello = String::from("hello");
     let ref_to_hello = &hello;
@@ -45,4 +59,14 @@ pub fn try_referencing() {
     // assert_eq!(hello, ref_to_hello); can't compare `String` with `&String` E0277
     assert_eq!(hello, *ref_to_hello);
     assert_eq!(hello, *boxed_value);
+}
+
+pub fn try_dropping() {
+    let box_1 = DropBox(1);
+    let box_2 = DropBox(2);
+    let box_3 = DropBox(3);
+    let box_4 = DropBox(4);
+    let box_5 = DropBox(5);
+
+    drop(box_3);
 }
