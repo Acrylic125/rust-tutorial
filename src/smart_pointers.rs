@@ -1,10 +1,14 @@
+use std::cell::RefCell;
 use std::fmt::Display;
 use std::ops::Deref;
+use std::rc::Rc;
 
 pub fn try_smart_pointers() {
     try_boxing();
     try_referencing();
     try_dropping();
+    try_reference_count();
+    try_interior_mutability();
 }
 
 enum ConsList<T> {
@@ -69,4 +73,38 @@ pub fn try_dropping() {
     let box_5 = DropBox(5);
 
     drop(box_3);
+}
+
+pub fn try_reference_count() {
+    let value = 3;
+    let reference = Rc::new(value);
+
+    let new_reference = Rc::clone(&reference);
+    println!("#1 reference {}", Rc::strong_count(&reference));
+    let new_reference = Rc::clone(&reference);
+
+    println!("#2 reference {}", Rc::strong_count(&reference));
+
+    {
+        let new_reference = Rc::clone(&reference);
+
+        println!("#3 reference {}", Rc::strong_count(&reference));
+    }
+    println!("#4 reference {}", Rc::strong_count(&reference));
+    let new_reference = Rc::clone(&reference);
+    drop(new_reference);
+    println!("#5 reference {}", Rc::strong_count(&reference));
+
+}
+
+struct Wrapped<T> {
+    pub wrapped: RefCell<T>,
+}
+
+pub fn try_interior_mutability() {
+    let wrapped = Wrapped {
+        wrapped: RefCell::new(3)
+    };
+    *wrapped.wrapped.borrow_mut() = 31;
+    println!("wrapped {}", wrapped.wrapped.borrow())
 }

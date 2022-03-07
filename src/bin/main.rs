@@ -5,8 +5,9 @@
 // use tutorial::traits;
 // use tutorial::lifetimes;
 // use tutorial::closures;
-use tutorial::smart_pointers;
+// use tutorial::smart_pointers;
+use tutorial::concurrency;
 
 fn main() {
-    smart_pointers::try_smart_pointers();
+    concurrency::try_messaging();
 }
