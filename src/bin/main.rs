@@ -9,5 +9,5 @@
 use tutorial::concurrency;
 
 fn main() {
-    concurrency::try_messaging();
+    concurrency::try_sharing_state();
 }

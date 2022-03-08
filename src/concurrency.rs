@@ -1,5 +1,4 @@
-use std::sync::mpsc;
-use std::sync::mpsc::{Sender, TryRecvError};
+use std::sync::{Arc, mpsc, Mutex};
 use std::thread;
 use std::time::Duration;
 
@@ -49,5 +48,25 @@ pub fn try_messaging() {
         }
     });
     receiver_1.join().unwrap();
+}
 
+pub fn try_sharing_state() {
+    let state = Mutex::new(String::from("Hello"));
+    let state_references = Arc::new(state);
+
+    let mut threads = vec![];
+
+    for i in 0..10 {
+        let state_ref = Arc::clone(&state_references);
+        let thread = thread::spawn(move || {
+            let mut unwrapped_ref = state_ref.lock().unwrap();
+            thread::sleep(Duration::from_secs(i % 2));
+            *unwrapped_ref += &format!("{}", i).to_string();
+        });
+        threads.push(thread);
+    }
+    for handle in threads {
+        handle.join().unwrap();
+    }
+    println!("{}", state_references.lock().unwrap())
 }
